@@ -12,10 +12,20 @@ import java.util.List;
 @Repository
 public interface SalarieAideADomicileRepository extends PagingAndSortingRepository<SalarieAideADomicile, Long> {
 
-    SalarieAideADomicile findByNom(String nom);
+    List<SalarieAideADomicile> findByNom(String nom);
 
     @Query("select sum(congesPayesPrisAnneeNMoins1)/sum(congesPayesAcquisAnneeNMoins1) from SalarieAideADomicile")
     Double partCongesPrisTotauxAnneeNMoins1();
 
     List<SalarieAideADomicile> findAllByNom(String nom, Pageable pageable);
+
+    List<SalarieAideADomicile> findByOrderByIdAsc();
+
+    List<SalarieAideADomicile> findByOrderByIdDesc();
+
+    List<SalarieAideADomicile> findByOrderByNomAsc();
+
+    List<SalarieAideADomicile> findByOrderByNomDesc();
+
+
 }

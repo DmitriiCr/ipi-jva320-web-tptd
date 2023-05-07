@@ -13,7 +13,6 @@ public class SalarieAideADomicile {
 
     public static float CONGES_PAYES_ACQUIS_PAR_MOIS = 2.5f;
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -122,8 +121,9 @@ public class SalarieAideADomicile {
         return id;
     }
 
-    public void setId(Long id) {
+    public SalarieAideADomicile setId(Long id) {
         this.id = id;
+        return this;
     }
 
     /**
@@ -145,32 +145,36 @@ public class SalarieAideADomicile {
         return joursTravaillesAnneeN;
     }
 
-    public void setJoursTravaillesAnneeN(double joursTravaillesAnneeN) {
+    public SalarieAideADomicile setJoursTravaillesAnneeN(double joursTravaillesAnneeN) {
         this.joursTravaillesAnneeN = joursTravaillesAnneeN;
+        return this;
     }
 
     public double getCongesPayesAcquisAnneeN() {
         return congesPayesAcquisAnneeN;
     }
 
-    public void setCongesPayesAcquisAnneeN(double congesPayesAcquisAnneeN) {
+    public SalarieAideADomicile setCongesPayesAcquisAnneeN(double congesPayesAcquisAnneeN) {
         this.congesPayesAcquisAnneeN = congesPayesAcquisAnneeN;
+        return this;
     }
 
     public LinkedHashSet<LocalDate> getCongesPayesPris() {
         return congesPayesPris;
     }
 
-    public void setCongesPayesPris(LinkedHashSet<LocalDate> congesPayesPris) {
+    public SalarieAideADomicile setCongesPayesPris(LinkedHashSet<LocalDate> congesPayesPris) {
         this.congesPayesPris = congesPayesPris;
+        return this;
     }
 
     public double getJoursTravaillesAnneeNMoins1() {
         return joursTravaillesAnneeNMoins1;
     }
 
-    public void setJoursTravaillesAnneeNMoins1(double joursTravaillesAnneeNMoins1) {
+    public SalarieAideADomicile setJoursTravaillesAnneeNMoins1(double joursTravaillesAnneeNMoins1) {
         this.joursTravaillesAnneeNMoins1 = joursTravaillesAnneeNMoins1;
+        return this;
     }
 
     public double getCongesPayesRestantAnneeNMoins1() {
@@ -190,32 +194,36 @@ public class SalarieAideADomicile {
         return congesPayesAcquisAnneeNMoins1;
     }
 
-    public void setCongesPayesAcquisAnneeNMoins1(double congesPayesAcquisAnneeNMoins1) {
+    public SalarieAideADomicile setCongesPayesAcquisAnneeNMoins1(double congesPayesAcquisAnneeNMoins1) {
         this.congesPayesAcquisAnneeNMoins1 = congesPayesAcquisAnneeNMoins1;
+        return this;
     }
 
     public double getCongesPayesPrisAnneeNMoins1() {
         return congesPayesPrisAnneeNMoins1;
     }
 
-    public void setCongesPayesPrisAnneeNMoins1(double congesPayesPrisAnneeNMoins1) {
+    public SalarieAideADomicile setCongesPayesPrisAnneeNMoins1(double congesPayesPrisAnneeNMoins1) {
         this.congesPayesPrisAnneeNMoins1 = congesPayesPrisAnneeNMoins1;
+        return this;
     }
 
     public LocalDate getMoisEnCours() {
         return moisEnCours;
     }
 
-    public void setMoisEnCours(LocalDate moisEnCours) {
+    public SalarieAideADomicile setMoisEnCours(LocalDate moisEnCours) {
         this.moisEnCours = moisEnCours;
+        return this;
     }
 
     public LocalDate getMoisDebutContrat() {
         return moisDebutContrat;
     }
 
-    public void setMoisDebutContrat(LocalDate moisDebutContrat) {
+    public SalarieAideADomicile setMoisDebutContrat(LocalDate moisDebutContrat) {
         this.moisDebutContrat = moisDebutContrat;
+        return this;
     }
     
 

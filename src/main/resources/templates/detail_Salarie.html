@@ -19,7 +19,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li>
-                    <a href="http://localhost:8080/salaries?page=0&amp;size=10&amp;sortProperty=nom&amp;sortDirection=ASC"
+                    <a href="http://localhost:8080/salaries?page=1&amp;size=4"
                        class="nav-link">Liste des salariés <span th:text="${numberOfSalaries}" class="badge badge-primary"></span></a></li>
             </ul>
 
@@ -135,7 +135,7 @@
         <div class="col-lg-6">
             <input form="saveForm" class="btn btn-primary" th:type="${!create} ? 'submit' : 'hidden'" value="Enregistrer">
             <input form="saveForm" class="btn btn-primary" th:type="${create} ? 'submit' : 'hidden'" value="Créer">
-            <a th:href="'/salaries/'+${id}+'/delete'" class="btn btn-danger">Supprimer</a>
+            <a th:if="${!create}" th:href="'/salaries/'+${id}+'/delete'" class="btn btn-danger">Supprimer</a>
         </div>
     </div>
 

@@ -16,8 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 @Controller
 public class ListController {
@@ -59,6 +57,7 @@ public class ListController {
 
         Page<SalarieAideADomicile> salarieAideADomicileServicePage;
         //Avec parametre nom il faut dévier le code
+        // Si non n'est pas présent on prend les prochains n salarie pour afficher sur la page courrante
         if (!nom.isPresent()) {
             salarieAideADomicileServicePage = salarieAideADomicileService.findPaginated(PageRequest.of(currentPage - 1, pageSize), sortProperty, order);
             modelMap.put("sortPropertyId", "id");
@@ -81,7 +80,9 @@ public class ListController {
     }
 
     @GetMapping("/salaries/aide/new")
-    public String createSalarie(final ModelMap modelMap, @ModelAttribute SalarieDTO salarie) throws SalarieException {
+    public String createSalarie(final ModelMap modelMap, @ModelAttribute SalarieDTO salarie){
+        Long numberOfSalaries = salarieAideADomicileService.countSalaries();
+        modelMap.put("numberOfSalaries" , numberOfSalaries.toString());
         modelMap.put("create", true);
         return "detail_Salarie";
     }

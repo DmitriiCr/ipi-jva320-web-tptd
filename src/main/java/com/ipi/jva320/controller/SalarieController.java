@@ -14,6 +14,7 @@ public class SalarieController {
     @Autowired
     SalarieAideADomicileService salarieAideADomicileService;
 
+    // Injection des caractéristiques du salariédans le template
     public void insertData(SalarieAideADomicile salarieResult, final ModelMap modelMap) {
         modelMap.put("id", salarieResult.getId());
         modelMap.put("nom", salarieResult.getNom());
@@ -27,7 +28,7 @@ public class SalarieController {
     }
 
     @RequestMapping("/salaries/*")
-    public String setNumberofSalaries(final ModelMap modelMap) {
+    public String setNumberOfSalaries(final ModelMap modelMap) {
         Long numberOfSalaries = salarieAideADomicileService.countSalaries();
         modelMap.put("numberOfSalaries", numberOfSalaries);
         return "detail_Salarie";
@@ -38,6 +39,7 @@ public class SalarieController {
         Long numberOfSalaries = salarieAideADomicileService.countSalaries();
         modelMap.put("numberOfSalaries", numberOfSalaries);
         SalarieAideADomicile salarieAideADomicile = salarieAideADomicileService.getSalarie(salarieId);
+        //On s'assure que salarie exist avant de l'afficher sinon on montre la liste
         if (salarieAideADomicile.getId() == null || salarieAideADomicile.getId() == 0) {
             return "list";
         }
@@ -50,6 +52,7 @@ public class SalarieController {
     public String updateSalarie(@PathVariable Long salarieId, @ModelAttribute SalarieDTO salarie, final ModelMap modelMap) throws SalarieException {
         Long numberOfSalaries = salarieAideADomicileService.countSalaries();
         modelMap.put("numberOfSalaries", numberOfSalaries);
+        //DTO se transforme en bean
         SalarieAideADomicile salarieAideADomicile = new SalarieAideADomicile()
                 .setId(salarieId)
                 .setNom(salarie.getNom())
@@ -71,6 +74,7 @@ public class SalarieController {
     public String createSalarie(@ModelAttribute SalarieDTO salarie, final ModelMap modelMap) throws SalarieException {
         Long numberOfSalaries = salarieAideADomicileService.countSalaries();
         modelMap.put("numberOfSalaries", numberOfSalaries);
+        //DTO se transforme en bean
         SalarieAideADomicile salarieAideADomicile = new SalarieAideADomicile()
                 .setNom(salarie.getNom())
                 .setMoisEnCours(salarie.getMoisEnCours())
@@ -89,19 +93,19 @@ public class SalarieController {
 
     @GetMapping("/salaries/{salarieId}/delete")
     public String deleteSalarie(@PathVariable Long salarieId, final ModelMap modelMap) throws SalarieException {
-        Long numberOfSalaries = salarieAideADomicileService.countSalaries();
-        modelMap.put("numberOfSalaries", numberOfSalaries);
         if(salarieAideADomicileService.getSalarie(salarieId) == null){
             modelMap.put("create", true);
             return "detail_Salarie";
         }
         salarieAideADomicileService.deleteSalarieAideADomicile(salarieId);
+        Long numberOfSalaries = salarieAideADomicileService.countSalaries();
+        modelMap.put("numberOfSalaries", numberOfSalaries);
         modelMap.put("create", true);
         return "detail_Salarie";
     }
 
     @GetMapping("/salaries/aide/{salarieId}")
-    public String detailSalarie(@PathVariable Long salarieId, final ModelMap modelMap) throws SalarieException {
+    public String detailSalarie(@PathVariable Long salarieId, final ModelMap modelMap) {
         Long numberOfSalaries = salarieAideADomicileService.countSalaries();
         modelMap.put("numberOfSalaries", numberOfSalaries);
         SalarieAideADomicile salarieAideADomicile = salarieAideADomicileService.getSalarie(salarieId);

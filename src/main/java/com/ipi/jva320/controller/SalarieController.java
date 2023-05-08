@@ -94,6 +94,8 @@ public class SalarieController {
     @GetMapping("/salaries/{salarieId}/delete")
     public String deleteSalarie(@PathVariable Long salarieId, final ModelMap modelMap) throws SalarieException {
         if(salarieAideADomicileService.getSalarie(salarieId) == null){
+            Long numberOfSalaries = salarieAideADomicileService.countSalaries();
+            modelMap.put("numberOfSalaries", numberOfSalaries);
             modelMap.put("create", true);
             return "detail_Salarie";
         }

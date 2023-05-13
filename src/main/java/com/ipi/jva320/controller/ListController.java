@@ -57,7 +57,7 @@ public class ListController {
 
         Page<SalarieAideADomicile> salarieAideADomicileServicePage;
         //Avec parametre nom il faut dévier le code
-        // Si non n'est pas présent on prend les prochains n salarie pour afficher sur la page courrante
+        // Si nom n'est pas présent on prend les prochains n salarie pour afficher sur la page courrante
         if (!nom.isPresent()) {
             salarieAideADomicileServicePage = salarieAideADomicileService.findPaginated(PageRequest.of(currentPage - 1, pageSize), sortProperty, order);
             modelMap.put("sortPropertyId", "id");
@@ -72,6 +72,9 @@ public class ListController {
             }
         } else {
             List<SalarieAideADomicile> salarieAideADomiciles = salarieAideADomicileService.findByNom(nom.get());
+            if(salarieAideADomiciles.size() == 0){
+                return "not-found";
+            }
             salarieAideADomicileServicePage = new PageImpl<SalarieAideADomicile>(salarieAideADomiciles, PageRequest.of(0, 1), salarieAideADomiciles.size());
             modelMap.put("check" , true);
         }
